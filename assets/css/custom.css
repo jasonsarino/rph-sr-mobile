@@ -1,0 +1,175 @@
+.navbar-brand {
+	padding: 5px 75px !important;
+}
+
+.navbar-brand img{
+	/*margin-top: 2px !important;*/
+    height: 110px !important;
+    /*margin-left: 22px;*/
+}
+
+.bg-indigo{
+	background-color: #FFFFFF !important;
+}
+
+.c-objective-status-option {
+	width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #b9bec3;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.c-objective-status-option-green:hover {
+	background-color: #58d498;
+}
+
+.c-objective-status-option-green:before {
+	width: 8px;
+	height: 8px;
+    margin: 5px;
+    content: "";
+    display: block;
+    background-color: #58d498;
+    border-radius: 50%;
+}
+
+.c-objective-status-option-yellow:hover {
+	background-color: #fea737;
+}
+
+.c-objective-status-option-yellow:before {
+	width: 8px;
+	height: 8px;
+    margin: 5px;
+    content: "";
+    display: block;
+    background-color: #fea737;
+    border-radius: 50%;
+}
+
+.c-objective-status-option-red:hover {
+	background-color: #ff5252;
+}
+
+.c-objective-status-option-red:before {
+	width: 8px;
+	height: 8px;
+    margin: 5px;
+    content: "";
+    display: block;
+    background-color: #ff5252;
+    border-radius: 50%;
+}
+
+.c-objective-status-option-green-clicked {
+	background-color: #58d498;
+}
+.c-objective-status-option-yellow-clicked {
+	background-color: #fea737;
+}
+.c-objective-status-option-red-clicked {
+	background-color: #ff5252;
+}
+
+.c-objective-status-option-default:before {
+    width: 8px;
+    height: 8px;
+    margin: 5px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.display-block {
+    color: #333 !important;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+.requiredMarks {
+    color: red;
+    font-weight: bold;
+}
+
+.description_formula {
+    border: 1px solid #DDD;
+    background: #F5F5F5;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.description_formula:hover {
+    color: #FFF;
+    border-color: #ff9800;
+    background-color: #fff3e0;
+    color: #aa3510;
+}
+
+.cdf_options {
+    text-transform: uppercase;
+}
+
+.panel-info>.panel-heading {
+    background-color: #578ebe !important;
+    border-color: #7ca7cc !important;
+}
+
+.panel-success>.panel-heading {
+    color: #fff;
+    background-color: #5d9023;
+    border-color: #5d9023;
+}
+
+#form-invoice-edit-details .form-group{
+    margin-bottom: 0px !important;
+}
+
+.editable-link {
+    border-bottom: 1px dashed #1e88e5;
+    cursor: pointer;
+    color: #1e88e5;
+}
+
+.btn-bg-primary {
+    border-radius: 5px !important;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #5d9023 !important;
+    color: #FFF;
+}
+
+.content-group {
+    margin-bottom: 20px!important;
+    color: #0f2944;
+}
+
+.bg-slate-800 {
+    background-color: #0f2944 !important;
+    border-color: #0f2944 !important;
+    color: #fff !important;
+}
+
+.border-top-teal {
+    border-top-color: #0f2944 !important;
+}
+
+.ratio {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
