@@ -81,13 +81,35 @@ $route['sales_report/broker/pending'] = 'pending_sales_report';
 $route['sales_report/broker/approved'] = 'approved_sales_report';
 
 
-// API
-$route['api/user/demo'] = 'api/v1/api_test/demo';
-$route['api/user/login'] = 'api/v1/api_test/login';
-$route['api/user/view'] = 'api/v1/api_test/view';
+// API ENDPOINTS
 
+// Login
 $route['api/v1/login'] = 'api/v1/login/validate';
 
+// Users Endpoints
+$route['api/v1/users/me'] = 'api/v1/users/me';
 
-// $route['user/(:any)'] = 'frontend/pages/view_user_profile/$1';
-// $route['user/(:num)'] = 'frontend/pages/view_user_profile/$1';
+// Positions Endpoints
+$route['api/v1/positions'] = 'api/v1/positions/get';
+$route['api/v1/positions/(:num)'] = 'api/v1/positions/search/$1';
+
+// Divisions Endpoints
+$route['api/v1/divisions'] = 'api/v1/divisions/get';
+$route['api/v1/divisions/(:num)'] = 'api/v1/divisions/search/$1';
+
+// Developers Endpoints
+$route['api/v1/developers'] = 'api/v1/developers/get';
+$route['api/v1/developers/(:num)'] = 'api/v1/developers/search/$1';
+
+// Projects Endpoints
+$route['api/v1/projects'] = 'api/v1/projects/get';
+$route['api/v1/projects/(:num)'] = 'api/v1/projects/search/$1';
+$route['api/v1/projects/(:num)/developer'] = 'api/v1/projects/getAllByDeveloperID/$1/';
+
+
+// Sales Reports Endpoints
+$route['api/v1/sales_reports/pending'] = 'api/v1/sales_report/get/pending';
+$route['api/v1/sales_reports/pending/(:any)'] = 'api/v1/sales_report/get/pending/$1';
+$route['api/v1/sales_reports/approved'] = 'api/v1/sales_report/get/approved';
+$route['api/v1/sales_reports/approved/(:any)'] = 'api/v1/sales_report/get/approved/$1';
+$route['api/v1/sales_reports/search'] = 'api/v1/sales_report/search';

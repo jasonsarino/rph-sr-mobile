@@ -73,6 +73,9 @@ class Login extends API_Controller {
         			// generate a token
        				$token = $this->authorization_token->generateToken($payload);
 
+       				// Update api token to users table
+       				$this->user_model->update_api_token($token);
+
 					// Record activity log
 			    	$this->general_model->log('Mobile App - Login', 'Login', $rsUserDetails->firstname.' '.$rsUserDetails->lastname . ' logged in to the mobile app');
 
@@ -80,17 +83,17 @@ class Login extends API_Controller {
 					$return_http = parent::HTTP_OK;
 
 				} else {
-					$return = ['status' => false, 'result' => ['message' => 'Invalid Login']];
+					$return = ['status' => false, 'result' => ['error' => 'Invalid Login']];
 					$return_http = parent::HTTP_UNAUTHORIZED;
 				}
 
 			} else {
-				$return = ['status' => false, 'result' => ['message' => 'We can\'t find anyone with ' . $this->input->post('username')]];
+				$return = ['status' => false, 'result' => ['error' => 'We can\'t find anyone with ' . $this->input->post('username')]];
 				$return_http = parent::HTTP_UNAUTHORIZED;
 			}
 
 		} else {
-			$return = ['status' => false, 'result' => ['message' => validation_errors()]];
+			$return = ['status' => false, 'result' => ['error' => validation_errors()]];
 			$return_http = parent::HTTP_UNAUTHORIZED;
 		}
 

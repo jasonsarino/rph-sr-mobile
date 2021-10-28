@@ -26,7 +26,7 @@ class User_model extends CI_Model{
 		// Get user details
 		$this->db->select('A.isAdmin, A.company_id, A.group_id, A.job_title, A.id, A.firstname, A.lastname, A.email, A.phone, A.profile_picture, 
 			A.tl_sd, A.isEnabled, A.tl_sd, A.token_id, A.session_id, A.username, A.password, B.privileges, B.group_name, A.phone, A.piid, A.position_id, 
-			A.hasDivision, A.division_id, A.dob, A.address, A.accre_number, A.accre_exp_date, A.dhsud_number, A.designated_broker');
+			A.hasDivision, A.division_id, A.dob, A.address, A.accre_number, A.accre_exp_date, A.dhsud_number, A.designated_broker, C.position, D.division');
 		if($user_id != '') {
 			$this->db->where('A.id', $user_id);	
 		} else {
@@ -34,6 +34,8 @@ class User_model extends CI_Model{
 		}
 		
 		$this->db->join('user_group B', 'B.id = A.group_id', 'LEFT OUTER');
+		$this->db->join('positions C', 'C.id = A.position_id', 'LEFT OUTER');
+		$this->db->join('divisions D', 'D.id = A.division_id', 'LEFT OUTER');
 		$query = $this->db->get($this->db_table ." A");
 		return $query->row();
 	}
@@ -178,6 +180,15 @@ class User_model extends CI_Model{
     	}
     	$query = $this->db->get_where($this->db_table, ['piid' => $this->input->post('piid'), 'nStatus' => 1]);
     	return ( $query->num_rows() == 1 ) ? $query->row() : FALSE;
+    }
+
+    public function update_api_token($token) {
+    	$this->data = array(
+			'api_token'				=>		$token
+		);	
+		$this->db->where('id', $this->session->userdata('user_id'));
+		$result = $this->db->update($this->db_table,$this->data);
+		return $result;
     }
 	
 	

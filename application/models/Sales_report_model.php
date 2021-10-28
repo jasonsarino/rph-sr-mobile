@@ -38,7 +38,7 @@ class Sales_report_model extends CI_Model{
         return ($query->num_rows() == 1 ) ? $query->row() : FALSE;
     }
 
-    public function getSalesReport($where) {
+    public function getSalesReport($where, $num_per_page = '', $limit = '') {
         $this->db->select("A.*, CONCAT(B.`firstname`,' ',B.`lastname`) as createdBy,
             CONCAT(C.`firstname`,' ',C.`lastname`) as modifiedBy,
             CONCAT(D.`firstname`,' ',D.`lastname`) as approvedBy,
@@ -67,6 +67,11 @@ class Sales_report_model extends CI_Model{
         $this->db->join("developers E", "E.id = A.developer", "LEFT OUTER");
         $this->db->join("projects F", "F.id = A.name_of_project", "LEFT OUTER");
         $this->db->order_by("A.id", "DESC");
+
+        if( !empty($num_per_page) ) {
+            $this->db->limit( $num_per_page , $limit);
+        }
+
         $query = $this->db->get($this->db_table . " A");
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
@@ -105,6 +110,9 @@ class Sales_report_model extends CI_Model{
         $this->db->join("developers E", "E.id = A.developer", "LEFT OUTER");
         $this->db->join("projects F", "F.id = A.name_of_project", "LEFT OUTER");
         $this->db->order_by("A.id", "DESC");
+
+
+
         $query = $this->db->get($this->db_table . " A");
 
         if( $exportCSV == 1) {
