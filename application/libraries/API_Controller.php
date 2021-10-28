@@ -120,7 +120,7 @@ class API_Controller extends CI_Controller
             // remove api time in user token data
             unset($token_data->API_TIME);
             // return token decode data
-            return [ 'token_data' => (array) $token_data ];
+            return [ 'data' => (array) $token_data ];
         }
     }
 
@@ -474,13 +474,25 @@ class API_Controller extends CI_Controller
     private function _isAuthorized()
     {
         // Load Authorization Library
-        $this->CI->load->library('Authorization_Token');
+        $this->CI->load->library('Authorization_token');
 
         // check token is valid
         $result = $this->authorization_token->validateToken();
 
         if (isset($result['status']) AND $result['status'] === true)
         {
+
+            // Load user model
+            $this->CI->load->model('user_model');
+
+            $userData = $this->user_model->getUserDetails('', '', $result['data']->token_id);
+
+            if( $userData ) {
+                $result['data']->id = $userData->id;
+                $result['data']->email = $userData->email;
+            }
+            
+
             return $result['data'];
 
         } else {

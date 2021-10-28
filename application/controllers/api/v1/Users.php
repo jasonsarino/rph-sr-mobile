@@ -35,6 +35,13 @@ class Users extends API_Controller {
             'requireAuthorization' => true,
         ]);
 
+        if( !isset($user_data['data']['id']) ) {
+            $return = ['status' => false, 'error' => "Invalid user"];
+            $return_http = parent::HTTP_NOT_FOUND;
+            $this->api_return( $return, $return_http );
+            die();
+        }
+
 		// Load user model
         $this->load->model('user_model');
 

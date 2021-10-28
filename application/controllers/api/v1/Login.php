@@ -59,10 +59,12 @@ class Login extends API_Controller {
 					$this->session->set_userdata('user_id', $userResults->id);
 
 					// Get logged in user details
-        			$rsUserDetails = $this->user_model->getUserDetails( $this->input->post('username'), $this->session->userdata('user_id'));
+        			$rsUserDetails = $this->user_model->getUserDetails( '', $this->session->userdata('user_id'));
 
-        			 $payload = [
-			            'token_id' 	=> $this->bims->generateTokenID($rsUserDetails),
+        			$token_id = $this->bims->generateTokenID($rsUserDetails);
+
+        			$payload = [
+			            'token_id' 	=> $token_id,
 			            'firstname' => $rsUserDetails->firstname,
 			            'lastname' 	=> $rsUserDetails->lastname,
 			        ];
@@ -74,7 +76,7 @@ class Login extends API_Controller {
        				$token = $this->authorization_token->generateToken($payload);
 
        				// Update api token to users table
-       				$this->user_model->update_api_token($token);
+       				$this->user_model->update_api_token($token_id);
 
 					// Record activity log
 			    	$this->general_model->log('Mobile App - Login', 'Login', $rsUserDetails->firstname.' '.$rsUserDetails->lastname . ' logged in to the mobile app');

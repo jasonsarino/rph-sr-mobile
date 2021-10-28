@@ -35,16 +35,14 @@ class Sales_report extends API_Controller {
 		$user_data = $this->_apiConfig([
             'methods' => ['GET'],
             'requireAuthorization' => true,
-        ]);
+        ]); 
 
-        $validSession = validSession( $user_data['token_data'] );
-        if() {
-
-        } else {
-            
+        if( !isset($user_data['data']['id']) ) {
+            $return = ['status' => false, 'error' => "Invalid user"];
+            $return_http = parent::HTTP_NOT_FOUND;
+            $this->api_return( $return, $return_http );
+            die();
         }
-
-         // $user_data['token_data']
 
 		// Load sales report model
         $this->load->model('sales_report_model');
@@ -52,17 +50,19 @@ class Sales_report extends API_Controller {
         // Load user model
         $this->load->model('user_model');
 
-        $userData = $this->user_model->getUserDetails('', $this->session->userdata('user_id'));
+        // Get current user data
+        $userData = $this->user_model->getUserDetails('', $user_data['data']['id']);
 
         $status = ( $status == 'pending' ) ? 0 : 1;
 
         if( $userData->privileges == "FULL-ACCESS" ) {
             $where = ['A.sr_status' => $status, 'A.nStatus' => 1];
         } else {
-            $where = ['A.sr_status' => $status, 'A.nStatus' => 1, 'A.prepared_by' => $this->session->userdata('user_id')];
+            $where = ['A.sr_status' => $status, 'A.nStatus' => 1, 'A.prepared_by' => $user_data['data']['id']];
         }
 
         $page = explode(":", $page)[1];
+
         $salesReportData = $this->sales_report_model->getSalesReport( $where, $this->num_per_page, ( $page - 1 ) * $this->num_per_page );
 
         // count all sales report
@@ -118,6 +118,13 @@ class Sales_report extends API_Controller {
             'methods' => ['POST'],
             'requireAuthorization' => true,
         ]);
+
+        if( !isset($user_data['data']['id']) ) {
+            $return = ['status' => false, 'error' => "Invalid user"];
+            $return_http = parent::HTTP_NOT_FOUND;
+            $this->api_return( $return, $return_http );
+            die();
+        }
 
         $search = $this->input->post('search');
 
