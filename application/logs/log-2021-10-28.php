@@ -23,3 +23,9 @@ ERROR - 2021-10-28 03:20:12 --> $config['composer_autoload'] is set to TRUE but 
 ERROR - 2021-10-28 06:50:12 --> Severity: error --> Exception: Call to undefined function update_api_token() X:\xampp\htdocs\rcd\rph-admin\application\controllers\api\v1\Login.php 77
 ERROR - 2021-10-28 03:20:20 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
 ERROR - 2021-10-28 03:21:17 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
+ERROR - 2021-10-28 11:45:13 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
+ERROR - 2021-10-28 11:45:13 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
+ERROR - 2021-10-28 11:45:13 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
+ERROR - 2021-10-28 11:45:13 --> 404 Page Not Found: Assets/bootstrap
+ERROR - 2021-10-28 11:45:13 --> $config['composer_autoload'] is set to TRUE but X:\xampp\htdocs\rcd\rph-admin\application\vendor/autoload.php was not found.
+ERROR - 2021-10-28 11:45:13 --> 404 Page Not Found: Assets/bootstrap
